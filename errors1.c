@@ -7,17 +7,20 @@ int unknown_op_error(char *opcode, unsigned int line_number);
 int no_int_error(unsigned int line_number);
 
 /**
- * ussage_error - prints usage error messages
- * Return: (EXIT_FAILURE)
+ * usage_error - Prints usage error messages.
+ *
+ * Return: (EXIT_FAILURE) always.
  */
 int usage_error(void)
 {
 	fprintf(stderr, "USAGE: monty file\n");
 	return (EXIT_FAILURE);
 }
+
 /**
- * malloc_error - prints malloc errror messages
- * Return: (EXIT_FAILURE);
+ * malloc_error - Prints malloc error messages.
+ *
+ * Return: (EXIT_FAILURE) always.
  */
 int malloc_error(void)
 {
@@ -26,31 +29,36 @@ int malloc_error(void)
 }
 
 /**
- * f_open_error - prints file opening error messageswith filename
- * @filename: name of file failed to open
- * Return: (EXIT_FAILURE)
+ * f_open_error - Prints file opening error messages w/ file name.
+ * @filename: Name of file failed to open
+ *
+ * Return: (EXIT_FAILURE) always.
  */
 int f_open_error(char *filename)
 {
-	 fprintf(stderr, "Error: can't open file %s\n");
-	 return (EXIT_FAILURE);
+	fprintf(stderr, "Error: Can't open file %s\n", filename);
+	return (EXIT_FAILURE);
 }
 
 /**
- * unknown_op_error - prints unknown instruction error meesages
- * @opcode: opcode where error occured
- * @line_number: line mo. in monty bytecode, file where error occured
- * Return: (EXIT_FAILURE)
+ * unknown_op_error - Prints unknown instruction error messages.
+ * @opcode: Opcode where error occurred.
+ * @line_number: Line number in Monty bytecodes file where error occured.
+ *
+ * Return: (EXIT_FAILURE) always.
  */
 int unknown_op_error(char *opcode, unsigned int line_number)
 {
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+	fprintf(stderr, "L%u: unknown instruction %s\n",
+		line_number, opcode);
 	return (EXIT_FAILURE);
 }
+
 /**
- * no_int_error - prints invalid monty_push arguments error messages
- * @line_number: line no. in monty bytecode
- * Return: (EXIT_FAILURE)
+ * no_int_error - Prints invalid monty_push argument error messages.
+ * @line_number: Line number in Monty bytecodes file where error occurred.
+ *
+ * Return: (EXIT_FAILURE) always.
  */
 int no_int_error(unsigned int line_number)
 {
