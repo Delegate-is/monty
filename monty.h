@@ -1,5 +1,5 @@
-#ifndef __MONTY_H__
-#define __MONTY_H__
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,24 +9,22 @@
 #define QUEUE 1
 #define DELIMS " \n\t\a\b"
 
-/* GLOBAL OPCODE TOKENS */
 extern char **op_toks;
 
 /**
- * struct stack_s - doubly linked list representation of a stack (or queue)
+ * struct stacks_s - double linked list representation of stack/queue
  * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
- *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
+ * @prev: points to the previous element of satck/queue
+ * @next: points to the next elent of queue/stack
+ * Description: doubly linked list node structure for 
+ * stack, queues LIFO, FIFO
  */
-typedef struct stack_s
+typedef struct stacks_s
 {
 	int n;
 	struct stack_s *prev;
 	struct stack_s *next;
-} stack_t;
+}stack_t
 
 /**
  * struct instruction_s - opcode and its function
@@ -34,15 +32,15 @@ typedef struct stack_s
  * @f: function to handle the opcode
  *
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
 {
-	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+        char *opcode;
+        void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* PRIMARY INTERPRETER FUNCTIONS */
+/* PRIMARY FUNCTIONS */
 void free_stack(stack_t **stack);
 int init_stack(stack_t **stack);
 int check_mode(stack_t *stack);
@@ -51,17 +49,17 @@ unsigned int token_arr_len(void);
 int run_monty(FILE *script_fd);
 void set_op_tok_error(int error_code);
 
-/* OPCODE FUNCTIONS */
+/*OPCODE FUNCTIONS */
 void monty_push(stack_t **stack, unsigned int line_number);
 void monty_pall(stack_t **stack, unsigned int line_number);
 void monty_pint(stack_t **stack, unsigned int line_number);
 void monty_pop(stack_t **stack, unsigned int line_number);
 void monty_swap(stack_t **stack, unsigned int line_number);
-void monty_add(stack_t **stack, unsigned int line_number);
 void monty_nop(stack_t **stack, unsigned int line_number);
+void monty_add(stack_t **stack, unsigned int line_number);
 void monty_sub(stack_t **stack, unsigned int line_number);
-void monty_div(stack_t **stack, unsigned int line_number);
 void monty_mul(stack_t **stack, unsigned int line_number);
+void monty_div(stack_t **stack, unsigned int line_number);
 void monty_mod(stack_t **stack, unsigned int line_number);
 void monty_pchar(stack_t **stack, unsigned int line_number);
 void monty_pstr(stack_t **stack, unsigned int line_number);
@@ -86,4 +84,4 @@ int short_stack_error(unsigned int line_number, char *op);
 int div_error(unsigned int line_number);
 int pchar_error(unsigned int line_number, char *message);
 
-#endif /* __MONTY_H__ */
+#endif
